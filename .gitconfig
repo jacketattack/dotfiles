@@ -1,0 +1,20 @@
+[alias]
+	s = status
+	d = diff
+	ds = diff --staged
+	b = branch
+	su = submodule update
+	rs = reset --soft HEAD~1
+	m = checkout master
+	last = diff HEAD~1
+    lastc = log -1 --pretty=format:"%H"
+[user]
+	name = Trevor May 
+	email = trevor_may@ultimatesoftware.com 
+[push]
+	default = simple
+[color]
+	ui = true
+[core]
+	editor = vim -f
+	excludesfile = /Users/trevorm/.gitignore_global
