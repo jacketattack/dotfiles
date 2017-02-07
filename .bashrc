@@ -50,11 +50,21 @@ alias cl="clear"
 alias o="open"
 alias al="vim ~/.bashrc"
 alias v="vim ~/.vimrc"
+alias wego="go run ~/Code/go/src/github.com/schachmat/wego/we.go"
+alias zork="cd ~/Code/zork/ && ./zork"
+alias word="vim ~/wordOfTheDay"
+alias whatsrunning="lsof -i"
+alias food="foodcritic -f all"
+alias gr="grep -r"
+alias pip="pip3"
+alias py="python3"
+alias be="bundle exec"
 
 # GO
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH=$HOME/Code/go/
-
+export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
+#export GOPATH=$HOME/US/evt/Product/gocomponents
+export GOPATH=$HOME/Code/go
 # Eclim
 alias startEclim="/opt/homebrew-cask/Caskroom/eclipse-java/4.5.1/Eclipse.app/Contents/Eclipse/eclimd"
 
@@ -67,3 +77,26 @@ alias vsh="vagrant ssh"
 alias vp="vagrant provision"
 alias vr="vagrant reload"
 alias vs="vagrant status"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# RVM
+source ~/.profile
+
+# RabbitMq
+PATH=$PATH:/usr/local/sbin
+
+# PHP MAMP
+export PATH=/Applications/MAMP/bin/php/php7.0.0/bin:$PATH
+
+# Imports Testing against local VM
+export RABBIT_HOST=192.168.33.11
+export ENV_HOST=192.168.33.11
+export MONGO_HOST=192.168.33.11
+alias adminMongo="cd ~/Code/adminMongoOfficial && npm start"
+
+#alias vault="~/.vault/./vault"
+# Vault
+export VAULT_ADDR='http://127.0.0.1:8200'
+export UNSEAL_KEY='f0dd533a9eddc07ff908610263d5b65cd98f9942f72d1a68ba0aa0b02a38e324'
+export ROOT_TOKEN='05f4079d-f6af-0e1b-f2f9-c81f21694351'

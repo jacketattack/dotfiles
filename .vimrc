@@ -22,6 +22,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set ff=unix
 
 set encoding=utf-8
 set background=dark
@@ -74,3 +75,13 @@ match OverLength /\%81v.\+/
 
 " Eclim Intellisense
 inoremap <C-l> <C-x><C-u>
+
+" IndentLine
+" vertical line indentation
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#09AA08'
+let g:indentLine_char = '│'
+
+" Auto close brackets/parenthesis
+"let delimitMate_expand_cr = 1
+ 

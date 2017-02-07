@@ -18,3 +18,4 @@
 [core]
 	editor = vim -f
 	excludesfile = /Users/trevorm/.gitignore_global
+	autocrlf = false
