@@ -33,8 +33,17 @@ alias gcm="git commit -m"
 alias gp="git push"
 alias gdm="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
 alias gc="git clone"
+alias gch="git checkout"
+alias gchb="git checkout -b"
 alias gs="git status"
+alias gst="git stash"
 alias gd="git diff"
+alias gau="git add -u"
+alias gpod="git pull origin develop -r"
+alias gbb="git bisect bad"
+alias gbg="git bisect good"
+# need to fix this alias gpor="git pull origin $(git branch | grep -E '^\* ' | sed 's/^\* //g') --rebase"
+git() { if [[ $@ == *"pull"* && $@ != *" -r"*  ]]; then command echo "Don’t be an idiot."; else command git "$@"; fi;  }
 
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -59,6 +68,8 @@ alias gr="grep -r"
 alias pip="pip3"
 alias py="python3"
 alias be="bundle exec"
+alias thedr="sudo java -jar ~/.drjava/drjava.jar &"
+alias dzip="~/.dzip/./dzip"
 
 # GO
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
@@ -67,9 +78,6 @@ export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
 export GOPATH=$HOME/Code/go
 # Eclim
 alias startEclim="/opt/homebrew-cask/Caskroom/eclipse-java/4.5.1/Eclipse.app/Contents/Eclipse/eclimd"
-
-# Homebrew API requests
-export HOMEBREW_GITHUB_API_TOKEN="643e36bd52a7b4e4f26bc416efbf784dd8ebb358"
 
 # Vagrant
 alias vu="vagrant up"
@@ -81,7 +89,7 @@ alias vs="vagrant status"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # RVM
-source ~/.profile
+#source ~/.profile
 
 # RabbitMq
 PATH=$PATH:/usr/local/sbin
@@ -95,8 +103,28 @@ export ENV_HOST=192.168.33.11
 export MONGO_HOST=192.168.33.11
 alias adminMongo="cd ~/Code/adminMongoOfficial && npm start"
 
-#alias vault="~/.vault/./vault"
-# Vault
-export VAULT_ADDR='http://127.0.0.1:8200'
-export UNSEAL_KEY='f0dd533a9eddc07ff908610263d5b65cd98f9942f72d1a68ba0aa0b02a38e324'
-export ROOT_TOKEN='05f4079d-f6af-0e1b-f2f9-c81f21694351'
+# Docker
+alias dc="docker-compose"
+
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+
+# Redshift
+export DYLD_LIBRARY_PATH="/opt/amazon/redshift/lib"
+export AMAZONREDSHIFTODBCINI="/opt/amazon/redshift/amazon.redshiftodbc.ini"
+
+# Maven
+alias mvCheck="mvn checkstyle:checkstyle"
+alias datCodeCoverage="mvn install -Dpmd.skip=true"
+alias accelInstall="mvn clean install -Dskip.analyze=true -DskipTests=true"
+alias runAccelerator="mvn jetty:run -Dskip.analyze=true"
+
+export ACCELERATOR_HOME=/opt/accelerator
+export GEARS_HOME="/opt/messagegears"
+export JAVA_OPTS="-Xmx2048m -Xms2048m -XX:MaxPermSize=512m"
+export MAVEN_OPTS="-Xmx2048m -Xms2048m -XX:MaxPermSize=512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044"
+
+# Use MacVim
+#alias vim="/Applications/MacVim.app/Contents/MacOs/Vim"
+
+# Generic Ops
+alias 'nexus'="~/.nexus/./nexus"
