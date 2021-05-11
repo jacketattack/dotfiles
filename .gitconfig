@@ -10,7 +10,7 @@
     lastc = log -1 --pretty=format:"%H"
 [user]
 	name = Trevor May 
-	email = trevor_may@ultimatesoftware.com 
+	email = trvrmay@yahoo.com
 [push]
 	default = simple
 [color]

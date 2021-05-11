@@ -42,6 +42,12 @@ alias gau="git add -u"
 alias gpod="git pull origin develop -r"
 alias gbb="git bisect bad"
 alias gbg="git bisect good"
+alias gfp="git fetch -p"
+alias diffFiles="git diff --name-only"
+alias devUpdate="gfp && gpod"
+alias rebaseOnDev="gch develop && gpod && gch - && git rebase develop"
+alias gcp="git cherry-pick"
+
 # need to fix this alias gpor="git pull origin $(git branch | grep -E '^\* ' | sed 's/^\* //g') --rebase"
 git() { if [[ $@ == *"pull"* && $@ != *" -r"*  ]]; then command echo "Don’t be an idiot."; else command git "$@"; fi;  }
 
