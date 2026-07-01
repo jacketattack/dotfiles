@@ -96,6 +96,7 @@ let g:ale_linters = {
 \   'typescriptreact': ['tsserver', 'eslint'],
 \   'javascript':      ['eslint'],
 \   'javascriptreact': ['eslint'],
+\   'java':            ['eclipselsp'],
 \}
 let g:ale_fixers = {
 \   'typescript':      ['prettier', 'eslint'],
@@ -118,4 +119,48 @@ let g:ale_virtualtext_cursor = 'current'
 nmap <Leader>en <Plug>(ale_next_wrap)
 nmap <Leader>ep <Plug>(ale_previous_wrap)
 nmap <Leader>ee <Plug>(ale_detail)
+
+" ALE completion (powers IntelliSense-style autocomplete from eclipselsp/tsserver)
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+set completeopt=menu,menuone,popup,noselect,noinsert
+
+" Java / Spring / Maven
+" jdtls (Eclipse JDT Language Server) lives at ~/eclipse.jdt.ls, matching
+" ALE's default g:ale_java_eclipselsp_path. Lombok needs to be loaded as a
+" javaagent or jdtls will flag Lombok-generated methods as missing.
+let g:ale_java_eclipselsp_javaagent = get(split(
+\   globpath($HOME . '/.m2/repository/org/projectlombok/lombok', '*/lombok-*.jar'),
+\   "\n"
+\), -1, '')
+
+" Walk up from a Java file to the nearest directory containing a pom.xml,
+" so :Make/:Dispatch/:Start run mvn from the right place regardless of
+" where Vim itself was launched (NERDTree opens at the repo root).
+function! FindMavenRoot(path) abort
+    let l:dir = fnamemodify(a:path, ':p:h')
+    while l:dir !=# '/'
+        if filereadable(l:dir . '/pom.xml')
+            return l:dir
+        endif
+        let l:dir = fnamemodify(l:dir, ':h')
+    endwhile
+    return ''
+endfunction
+
+augroup java_lsp
+    autocmd!
+    autocmd FileType java compiler mvn
+    autocmd FileType java let b:maven_root = FindMavenRoot(expand('%:p'))
+    autocmd FileType java if !empty(get(b:, 'maven_root', '')) | execute 'lcd' fnameescape(b:maven_root) | endif
+    autocmd FileType java nnoremap <buffer> gd :ALEGoToDefinition<CR>
+    autocmd FileType java nnoremap <buffer> gr :ALEFindReferences<CR>
+    autocmd FileType java nnoremap <buffer> K  :ALEHover<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>rn :ALERename<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>oi :ALEOrganizeImports<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>ca :ALECodeAction<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>mc :Make<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>mt :Dispatch mvn -q -B test<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>mr :Start mvn spring-boot:run<CR>
+augroup END
 
