@@ -1,2 +1,4 @@
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 source ~/.bashrc
+
+. "$HOME/.local/bin/env"

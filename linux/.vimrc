@@ -23,7 +23,10 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set autoindent
 set ff=unix
+set autoread
+au FocusGained,BufEnter * checktime
 
 set encoding=utf-8
 set background=dark
@@ -47,6 +50,7 @@ imap jj <Esc>
 
 " json synatx for vim
 autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead *.tsx setlocal tabstop=2 shiftwidth=2 softtabstop=2
 autocmd BufRead,BufNewFile *.md setlocal spell
 
 " Airline
@@ -85,4 +89,33 @@ let g:indentLine_char = '│'
 
 " Auto close brackets/parenthesis
 "let delimitMate_expand_cr = 1
- 
+
+" ALE
+let g:ale_linters = {
+\   'typescript':      ['tsserver', 'eslint'],
+\   'typescriptreact': ['tsserver', 'eslint'],
+\   'javascript':      ['eslint'],
+\   'javascriptreact': ['eslint'],
+\}
+let g:ale_fixers = {
+\   'typescript':      ['prettier', 'eslint'],
+\   'typescriptreact': ['prettier', 'eslint'],
+\   'javascript':      ['prettier'],
+\   'javascriptreact': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'delay'
+let g:ale_lint_delay = 500
+
+highlight ALEError   cterm=underline ctermfg=NONE ctermbg=NONE
+highlight ALEWarning cterm=underline ctermfg=NONE ctermbg=NONE
+highlight ALEInfo    cterm=underline ctermfg=NONE ctermbg=NONE
+
+let g:ale_sign_error   = '✗'
+let g:ale_sign_warning = '▲'
+let g:ale_virtualtext_cursor = 'current'
+
+nmap <Leader>en <Plug>(ale_next_wrap)
+nmap <Leader>ep <Plug>(ale_previous_wrap)
+nmap <Leader>ee <Plug>(ale_detail)
+
