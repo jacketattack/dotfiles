@@ -19,3 +19,11 @@
 	editor = vim -f
 	excludesfile = /Users/trevorm/.gitignore_global
 	autocrlf = false
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential]
+	helper = !gh auth git-credential

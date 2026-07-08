@@ -1,9 +1,0 @@
-[submodule "linux/.vim/bundle/kotlin-vim"]
-	path = linux/.vim/bundle/kotlin-vim
-	url = https://github.com/udalov/kotlin-vim.git
-[submodule "linux/.vim/bundle/ale"]
-	path = linux/.vim/bundle/ale
-	url = https://github.com/dense-analysis/ale.git
-[submodule "linux/.vim/bundle/vim-dispatch"]
-	path = linux/.vim/bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch.git

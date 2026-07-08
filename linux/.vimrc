@@ -164,3 +164,19 @@ augroup java_lsp
     autocmd FileType java nnoremap <buffer> <Leader>mr :Start mvn spring-boot:run<CR>
 augroup END
 
+" vim-dadbod / vim-dadbod-ui — Postgres client (DataGrip-style browse + query)
+" Saved connections shown in the :DBUI tree. "pickempals_local" points at the
+" Postgres container from backend/compose.yaml (user/pass/db all "pickempals").
+" Requires the `psql` CLI (postgresql-client) to actually run queries.
+let g:dbs = {
+\   'pickempals_local': 'postgres://pickempals:pickempals@localhost:5432/pickempals',
+\ }
+let g:db_ui_save_location = expand('~/.vim/db_ui_queries')
+let g:db_ui_show_database_icon = 1
+let g:db_ui_use_nerd_fonts = 1
+
+nnoremap <Leader>db :DBUIToggle<CR>
+nnoremap <Leader>df :DBUIFindBuffer<CR>
+nnoremap <Leader>dr :DBUIRenameBuffer<CR>
+nnoremap <Leader>dl :DBUILastQueryInfo<CR>
+
