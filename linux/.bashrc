@@ -41,6 +41,7 @@ alias diffFiles="git diff --name-only"
 alias devUpdate="gfp && gpod"
 alias rebaseOnDev="gch develop && gpod && gch - && git rebase develop"
 alias gcp="git cherry-pick"
+alias gl="git log"
 
 # need to fix this alias gpor="git pull origin $(git branch | grep -E '^\* ' | sed 's/^\* //g') --rebase"
 git() { if [[ $@ == *"pull"* && $@ != *" -r"*  ]]; then command echo "Don’t be an idiot."; else command git "$@"; fi;  }
@@ -64,6 +65,11 @@ alias gr="grep -r"
 alias pip="pip3"
 alias py="python3"
 alias be="bundle exec"
+alias pbcopy="xclip -selection clipboard"
+
+# Claude
+alias resumeClaudeSession="claude --resume"
+
 
 # Docker
 alias dc="docker-compose"
@@ -73,6 +79,9 @@ alias mvCheck="mvn checkstyle:checkstyle"
 alias mci="mvn clean install"
 alias mvnInstallNoTests="mvn clean install -Dskip.analyze=true -DskipTests=true"
 
+# Jetbrains
+alias jetbrainsToolbox="~/.jetbrains-toolbox/bin/./jetbrains-toolbox"
+
 # Homebrew
 export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
@@ -81,11 +90,29 @@ export PATH="$HOME/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.li
 export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info${INFOPATH+:$INFOPATH}"
 
-# OpenClaw Completion
-source "/home/trevdev/.openclaw/completions/openclaw.bash"
-
 # Telegram APp
 alias telegram="~/.telegram/./Telegram"
 
 # Fixes to this machine
 alias fixWeirdMonitorConnectin="xrandr --output VGA-1-2 --off && xrandr --output VGA-1-1 --off "
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# pnpm
+export PNPM_HOME="/home/trevor/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# PickemPals
+alias oddsGetSports="hurl --variables-file ~/dev/pickem-pals/docs/.env --from-entry 1 --to-entry 1 ~/dev/pickem-pals/docs/odds-api-requests.hurl"
+alias oddsGetMoneylines="hurl --variables-file ~/dev/pickem-pals/docs/.env --from-entry 2 --to-entry 2 ~/dev/pickem-pals/docs/odds-api-requests.hurl"
+alias oddsGetScores="hurl --variables-file ~/dev/pickem-pals/docs/.env --from-entry 3 --to-entry 3 ~/dev/pickem-pals/docs/odds-api-requests.hurl"

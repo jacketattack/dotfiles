@@ -1,0 +1,5 @@
+{
+  "semanticTokens.enable": true,
+  "java.jdt.ls.lombokSupport.enabled": true,
+  "java.jdt.ls.java.home": "/home/trevor/.sdkman/candidates/java/current"
+}
